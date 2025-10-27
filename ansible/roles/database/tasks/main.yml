@@ -1,0 +1,14 @@
+- name: lauch PostgreSQL database container
+  docker_container:
+    name: my-postgres
+    image: fantinlna/tp-devops-database:latest
+    state: started
+    restart_policy: no
+    env:
+      POSTGRES_DB: db
+      POSTGRES_USER: usr
+      POSTGRES_PASSWORD: pwd
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    networks:
+      - name: "{{ app_network }}"

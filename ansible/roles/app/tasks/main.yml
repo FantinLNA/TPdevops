@@ -1,0 +1,13 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/app
+- name: launch backend API container
+  docker_container:
+    name: my-simpleapi
+    image: fantinlna/tp-devops-simple-api:latest
+    state: started
+    restart_policy: no
+    networks:
+      - name: "{{ app_network }}"
+    published_ports:
+      - "8081:8080"

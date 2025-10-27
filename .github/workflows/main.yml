@@ -76,3 +76,27 @@ jobs:
           context: ./http-server
           tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-httpd:latest
           push: ${{ github.ref == 'refs/heads/main' }}
+  
+  deploy on server:
+    name: Deploy on remote server
+    needs: build-and-push-docker-image
+    runs-on: ubuntu-24.04
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Add server to known hosts
+        run: ssh-keyscan -H fantin.ellena--mehl.takima.cloud >> ~/.ssh/known_hosts
+
+      - name: Deploy using Ansible
+        run: |
+          ansible-playbook -i inventories/setup.yml playbook.yml \
+          -u ubuntu \
+          --private-key ~/.ssh/id_rsa
