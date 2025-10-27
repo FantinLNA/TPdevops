@@ -77,7 +77,7 @@ jobs:
           tags:  ${{secrets.DOCKERHUB_USERNAME}}/tp-devops-httpd:latest
           push: ${{ github.ref == 'refs/heads/main' }}
   
-  deploy on server:
+  deploy-on-server:
     name: Deploy on remote server
     needs: build-and-push-docker-image
     runs-on: ubuntu-24.04
