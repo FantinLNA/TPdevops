@@ -97,6 +97,6 @@ jobs:
 
       - name: Deploy using Ansible
         run: |
-          ansible-playbook -i inventories/setup.yml playbook.yml \
+          ansible-playbook -i ansible/inventories/setup.yml ansible/playbook.yml \
           -u ubuntu \
           --private-key ~/.ssh/id_rsa
