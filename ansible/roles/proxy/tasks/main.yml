@@ -8,6 +8,6 @@
     state: started
     restart_policy: no
     ports:
-      - "80:80"
+      - "90:80"
     networks:
       - name: "{{ app_network }}"
