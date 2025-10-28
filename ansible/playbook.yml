@@ -11,5 +11,5 @@
     - network
     - database
     - app
-    - frontend
+    # - frontend
     - proxy
