@@ -9,3 +9,5 @@
       - name: "{{ app_network }}"
     restart_policy: no
     state: started
+    published_ports:
+      - "8080:80"
