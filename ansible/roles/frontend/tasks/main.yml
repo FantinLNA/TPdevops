@@ -3,7 +3,7 @@
 # tasks file for roles/frontend
 - name: Launch frontend container
   docker_container:
-    name: frontend
+    name: my-frontend
     image: fantinlna/tp-devops-frontend:latest
     networks:
       - name: "{{ app_network }}"
